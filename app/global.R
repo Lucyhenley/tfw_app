@@ -6,6 +6,7 @@ library(png)
 library(tools)
 library(pracma)
 library(latex2exp)
+library(raster)
 
 
 

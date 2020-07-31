@@ -1,17 +1,8 @@
 options(shiny.maxRequestSize=2000*1024^2)
 
 server <- function(input, output, session) {
-  
-  url <- a("here", href="https://github.com/Lucyhenley/CardiffMATHBIO_NERCHackathonTwo_PublicTransport")
-  output$tab <- renderUI({
-    tagList("This app is Cardiff University MATHBIO's entry to COVID-19 Hackathon 2: Recovery. The goal is to reduce public transport
-  emissions per person by creating a tool that will present an optimal seating arrangement under social distancing.
-            To use the app, adjust the sliders to find optimal seating arrangements following social distancing in varying situations.
-            For more information, click ", url, ".")
-  })
-  
+
   usable_seats <- reactive({
-    print(input$inputSelect)
     seat_locations <- read.csv(file=paste0("seat_locations", input$inputSelect, ".csv"))
       seat_locations <- remove_seats(seat_locations,input$SocialDistance)
   })
@@ -41,10 +32,11 @@ server <- function(input, output, session) {
   output$subplots <- renderPlot({
     
     social_distancing <- input$SocialDistance
-    seat_sd <- usable_seats()
-    heatmaps <- heatmapper(seat_sd,social_distancing,domain_x,domain_y)
+    seat_all <- read.csv(file=paste0("seat_locations", input$inputSelect, ".csv"))
+    seat_locations <- usable_seats()
+    heatmaps <- heatmapper(seat_locations,social_distancing,domain_x,domain_y)
     par(mfrow=c(3,1), mar= c(3,2,5, 1))
-    captext <- paste("Capacity of 1 train carriage is ", nrow(seat_sd), " passengers with social distancing.")
+    captext <- paste("Capacity of 1 train carriage is ", nrow(seat_locations), " passengers with social distancing.")
     mytitle <- "Available seats with social distancing measures"
 
     plot(NULL, xlim=c(0,domain_x), ylim=c(0,domain_y), asp=1, axes=FALSE,
@@ -54,12 +46,13 @@ server <- function(input, output, session) {
     points(seat_locations$x,seat_locations$y,pch=4,col=rgb(1, 0, 0,1))
     lines(x_box,y_box)
     
-    for (j in 1:nrow(seat_sd)) {
+    for (j in 1:nrow(seat_locations)) {
       idx1 <- 1+100*(j-1)
       idx2 <- 100*(j-1) + 100
       polygon(x=heatmaps[1,idx1:idx2],y=heatmaps[2,idx1:idx2],col=rgb(0, 0, 1,0.2))
-      points(seat_sd[j,"x"],seat_sd[j,"y"],cex=2,pch=19)
+      points(seat_locations[j,"x"],seat_locations[j,"y"],cex=2,pch=19)
     }
+    points(seat_all$x,seat_all$y,pch=4,col=rgb(1, 0, 0,1))
 
     
     par(mar=c(0,0,0,0))
@@ -122,6 +115,15 @@ server <- function(input, output, session) {
   }, height=75)
   
   
+  output$train_diagram <- renderPlot({
+    
+    plot(NULL, xlim=c(0,domain_x), ylim=c(0,domain_y), asp=1, axes=FALSE, xlab="", ylab="")
+ #   im<-load.image(paste0("floorplan", input$inputSelect, ".png"))
+#    plot(im)
+    
+    jpg <- stack(paste0("floorplan", input$inputSelect, ".png"))
+    plotRGB(jpg)
+  })
   
 }
 

@@ -1,11 +1,7 @@
 
 ui <- fluidPage(
   
-  titlePanel(h1("Tfw trains",align="centre")),
-  
-  tags$head(tags$style("#emissionstext{color: red;
-                                 font-size: 25px;
-                                 }")),
+  titlePanel(h1("Tfw train capacity with social distancing",align="centre")),
   
   headerPanel(uiOutput("tab",style = "font-size:15px;")),
   
@@ -14,7 +10,7 @@ ui <- fluidPage(
       "inputSelect",
       label = ("Choose train model:"),
       choices = c(
-        "142" = "142",
+ #       "142" = "142",
         "150" = "150"
       ),
 
@@ -32,8 +28,9 @@ ui <- fluidPage(
     column(7,
            headerPanel(""),
            headerPanel(""),
-           plotOutput("subplots", width = "100%", height = "600px"),      h3("Carriage diagram"),
-           img(src="train_floorplan.png",width="600", height="150",align="centre")
+           plotOutput("subplots", width = "100%", height = "600px"),      
+           h3("Carriage diagram"),
+           plotOutput("train_diagram", width = "100%")
            ), 
 
     
