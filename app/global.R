@@ -12,8 +12,7 @@ library(latex2exp)
 #setwd("C:/Users/lucy_/covid-recovery/app")
 
 
-seat_locations <- read.csv(file="seat_locations.csv")
-shield_locations <- read.csv(file="shield_locations.csv")
+
 
 domain_x <- 20.4
 domain_y <- 2.82
