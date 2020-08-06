@@ -13,7 +13,7 @@ server <- function(input, output, session) {
   usable_seats2 <- reactive({
     
     seat_locations <- read.csv(file=paste0("seat_locations", input$inputSelect, "_2.csv"))
-    best_order <- seat_locations#read.csv(file=paste0("best_order", input$inputSelect, "_1.csv"))
+    best_order <- read.csv(file=paste0("best_order", input$inputSelect, "_2.csv"))
     seat_locations <- remove_seats(seat_locations,input$SocialDistance, best_order)
   })
   
@@ -66,7 +66,7 @@ server <- function(input, output, session) {
   
     heatmaps <- heatmapper(seat_locations_2,social_distancing,domain_x,domain_y)
     
-    captext <- paste("Capacity of carriage 2 is ", nrow(seat_locations_2), " passengers with shielding.")
+    captext <- paste("Capacity of carriage 2 is ", nrow(seat_locations_2), " passengers with social distancing.")
     plot(NULL, xlim=c(0,domain_x), ylim=c(0,domain_y), asp=1, axes=FALSE, xlab="", 
          ylab="")
     mytitle <- "Available seats with social distancing measures and shielding"
