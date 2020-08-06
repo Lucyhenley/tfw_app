@@ -4,6 +4,8 @@ server <- function(input, output, session) {
 
   usable_seats <- reactive({
     seat_locations <- read.csv(file=paste0("seat_locations", input$inputSelect, ".csv"))
+    plot(seat_locations)
+    print(seat_locations)
       seat_locations <- remove_seats(seat_locations,input$SocialDistance)
   })
   
