@@ -7,12 +7,10 @@ library(tools)
 library(pracma)
 library(latex2exp)
 library(raster)
-
+library(rgdal)
 
 
 #setwd("C:/Users/lucy_/covid-recovery/app")
-
-
 
 
 domain_x <- 20.4
