@@ -31,7 +31,7 @@
 \item Preliminary stochastic simulations suggest our solutions are optimal.
 \item We have developed a web-based application for the Class 150 train seating that allows the user to specify the social distancing measure and return the maximal capacity. Available here: \href{https://lucyhenley.shinyapps.io/TFW_socialdistancing/}{https://lucyhenley.shinyapps.io/TFW\_ socialdistancing/}
 \item We provide a user-friendly theoretical framework to produce optimal seating arrangements while adapting to dynamic social distancing measures.
-
+\end{itemize}
 
 \section*{What we could do next}
 \begin{itemize}
@@ -47,30 +47,28 @@
 
 \section*{Methods and results}
 
-Following our discussions, we added the seating arrangements for the Class 150 train layout to our software. Distance calculations are taken from the centre point of each seat, upon selecting a fixed seat, the algorithm sweeps through all other seats and removes any seat that in within the social distance measure provided, repeating this process until all available seats have a checked. In order to find an optimal solution, we simulated the seat selection randomly 10,000 times for each carriage (see \autoref{fig:Stochastic_sims}), we then selected the order of fixed seats that yielded the greatest capacity. The results of the optimal seat selection algorithm are displayed in Figure \ref{Demonstration_pics} and in Table \ref{tab:performance}. 
+Following our discussions, we added the seating arrangements for the Class 150 train layout to our software. Distance calculations are taken from the centre point of each seat, upon selecting a fixed seat, the algorithm sweeps through all other seats and removes any seat that in within the social distance measure provided, repeating this process until all available seats have been checked. In order to find an optimal solution, we simulated the seat selection randomly $10,000$ times for each carriage (see \autoref{fig:Stochastic_sims}), selecting the order of fixed seats that yielded the greatest capacity. The results of the optimal seat selection algorithm are displayed in Figure \ref{Demonstration_pics} and in Table \ref{tab:performance}. 
 
 
 
-\begin{figure}[H]
+\begin{figure*}[h]
          \centering
  \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=1\textwidth]{tfw_car1_sim_plot_write.png}
-         \caption{Stochastic seat seat selection results for carriage 1.}
+         \caption{Stochastic seat selection results for carriage 1.}
          \label{fig:sim1}
      \end{subfigure}
           \hfill
      \begin{subfigure}[b]{0.48\textwidth}
          \centering
          \includegraphics[width=1\textwidth]{tfw_car2_sim_plot_write.png}
-         \caption{Stochastic seat seat selection results for carriage 2.}
+         \caption{Stochastic seat selection results for carriage 2.}
          \label{fig:sim2}
      \end{subfigure}
-     
- 
  \caption{Results from stochastic seat selections. The fixed seats where selected at random, the algorithm then swept through all seats and removed seats that were too close. The black line represents the resulting capacity from each simulation, while the dashed red line corresponds to the mean of all simulations.}
         \label{fig:Stochastic_sims}
-\end{figure}
+\end{figure*}
 
 
 
