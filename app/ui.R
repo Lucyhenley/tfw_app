@@ -3,7 +3,7 @@ ui <- fluidPage(
   
   titlePanel(h1("TfW: Preliminary results for the Class 150 design",align="centre")),
   
-  headerPanel(uiOutput("tab",style = "font-size:15px;")),
+  wellPanel(uiOutput("tab",style = "font-size:15px;")),
   
   
   fluidRow(
