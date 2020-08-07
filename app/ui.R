@@ -25,21 +25,23 @@ ui <- fluidPage(
   
 
   fluidRow(
-    column(7,
+    column(2),
+    column(8,
            headerPanel(""),
            headerPanel(""),
            plotOutput("subplots", width = "100%", height = "600px"),      
            h3("Carriage diagram"),
            plotOutput("train_diagram", width = "100%")
-           ), 
+           ) 
 
     
     
-    column(5,
-           plotOutput("trainemissions", width = "60%"),
-           textOutput("emissionstext")
-           , align="center"
-    )
+ 
+    #   column(5,
+        #   plotOutput("trainemissions", width = "60%"),
+          # textOutput("emissionstext")
+         #  align="center"
+    #)
 
     
   )
