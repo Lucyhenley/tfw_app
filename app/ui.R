@@ -1,9 +1,10 @@
 
 ui <- fluidPage(
   
-  titlePanel(h1("Tfw train capacity with social distancing",align="centre")),
+  titlePanel(h1("TfW: Preliminary results for the Class 150 design",align="centre")),
   
   headerPanel(uiOutput("tab",style = "font-size:15px;")),
+  
   
   fluidRow(
     column(3,   wellPanel(  radioButtons(
