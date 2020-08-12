@@ -8,6 +8,7 @@
 \usepackage{amssymb}
 \usepackage{subcaption}
 \usepackage{amsfonts}
+\usepackage{tabularx}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=3cm]{geometry}
 \usepackage{amsmath}
@@ -26,25 +27,21 @@
 \section*{Key points}
 \begin{itemize}
 
-\item We have integrated the seat layout of both carriages of the Class 150 into our software from the designs provided (file titled Seating marker layouts 2 m.pdf, received $27/087/2020$).
-\item We achieved a maximum seat occupancy of $22.5\%$, whilst strictly adhering to a $2$m social distancing measure. 
-\item We have developed a web-based application for the Class 150 train seating that allows the user to specify the social distancing measure and return the maximal capacity. Available \href{https://lucyhenley.shinyapps.io/TFW_socialdistancing/}{https://lucyhenley.shinyapps.io/TFW\_ socialdistancing/}{here}.
-%\item We provide a user-friendly theoretical framework to produce optimal seating arrangements while adapting to dynamic social distancing measures.
+\item We have integrated the seat layout of both carriages of the Class 150 into our software from the designs provided (file titled Seating marker layouts 2 m.pdf, received $27/07/2020$).
+\item We achieved a maximum seat occupancy of $22.5\%$, whilst strictly adhering to a $2$m social distancing measure.
+\item We have developed a web-based application for the Class 150 train seating that allows the user to specify the social distancing measure and return the maximal capacity. Available \href{https://lucyhenley.shinyapps.io/TFW_socialdistancing/}{here}.
+\item We provide a user-friendly theoretical framework to produce optimal seating arrangements while adapting to dynamic social distancing measures.
+\item A key assumption is that we are optimising only the number of available seats. This creates regions in the walkways where passengers must walk through other people's `safety bubble' to access seats. We assume that carriages are one way, with an entrance at the front and exit at the back, such that passengers do not cross paths when entering or exiting the train.
 \end{itemize}
 
 \section*{What we could do next}
 \begin{itemize}
-\item Apply further optimisation and refinement to the method to possibly immprove on current results.
+\item Apply further optimisation and refinement to the method to possibly improve on current results.
 \item Carry out the computations for all other train designs, and integrate these designs into the web-application for TfW use.
 \item Include passenger direction to the analysis; a 1m social distance may be sufficient for passengers facing away from each other.
 \item Include the use of plastic shields for each carriage type in computation, allowing for possible cost-benefit analysis.
 
 \end{itemize}
-
-
-\subsection*{Costings for further work}
-During this work, we established a new app which, currently, contains only the layout one type of train. We developed methods to extract the seat location data from the available PDF file, and then ran our algorithm to determine a suitable seating plan. Further, we conducted a mathematical investigation of the problem to determine whether a true optimum is easily available, and then developed methods that could potentially improve on the first result found. In total, this work took approximately $1$ month to complete, and for a similar level of work to be undertaken in the future we would request remuneration of £$3000$. However, the exact cost of any future work would be subject to the quantity of work undertaken, and the level of complexity of the required work.
-
 
 
 \section*{Methods and results}
@@ -95,7 +92,7 @@ During this work, we established a new app which, currently, contains only the l
 \end{figure*}
 
 
-Following our discussions, we added the seating arrangements for the Class 150 train layout to our software. Distance calculations are taken from the centre point of each seat, upon selecting a fixed seat, the algorithm sweeps through all other seats and removes any seat that in within the social distance measure provided, repeating this process until all available seats have been checked. In order to find an optimal solution, we simulated the seat selection randomly $10,000$ times for each carriage, selecting the order of fixed seats that yielded the greatest capacity. The results of the optimal seat selection algorithm are displayed in Figure \ref{Demonstration_pics} and in Table \ref{tab:performance}. 
+Following our discussions, we added the seating arrangements for the Class 150 train layout to our software. Distance calculations are taken from the centre point of each seat, upon selecting a fixed seat, the algorithm sweeps through all other seats and removes any seat that is within the social distance measure provided, repeating this process until all available seats have been checked. In order to find an optimal solution, we simulated the seat selection randomly $10,000$ times for each carriage, selecting the order of fixed seats that yielded the greatest capacity. The results of the optimal seat selection algorithm are displayed in Figure \ref{Demonstration_pics} and in Table \ref{tab:performance}.
 
 
 
@@ -145,12 +142,65 @@ Following our discussions, we added the seating arrangements for the Class 150 t
 
 
 
-As demonstrated in Table \ref{tab:performance}, we can very quickly achieve similar occupancy rates in the train whilst maintaining social distancing measures. Given more time, we can develop methods for taking passenger direction into account, and geometrical constrains (walls/partitions in the carriages) allowing for higher occupancy rates.
+As demonstrated in Table \ref{tab:performance}, we can very quickly achieve similar occupancy rates in the train whilst maintaining social distancing measures. Given more time, we can develop methods for taking passenger direction into account, and geometrical constraints (walls/partitions in the carriages) allowing for higher occupancy rates.
 \footnotetext{We note that in the provided estimation of the Class 150 design, there exists `usable' seats that are within 2 metres of each other.}
 
 \section*{Prospective developments for improving optimality}
-Our application always provides seating arrangements that obey social distancing measures and provides locally optimal solutions which are similar the given benchmarks. Returning the  absolute optimum arrangement  is a lot more difficult because the problem is what is known as `NP-hard'.  Simply put, the only way to guarantee you have the most possible seats used is to try every possible order of seat checking, and pick the one which has the most seats used. Actually trying out every seat ordering would take a very long time; there are more ways to order $120$ seats than there are particles in the universe.\\
+Our application provides seating arrangements that obey social distancing measures and provides locally optimal solutions which are similar the given benchmarks. Returning the  absolute optimum arrangement  is a lot more difficult because the problem is what is known as `NP-hard'.  Simply put, the only way to guarantee you have the most possible seats used is to try every possible order of seat checking, and pick the one which has the most seats used. Actually trying out every seat ordering would take a very long time; there are more ways to order $120$ seats than there are particles in the universe.\\
 
-To improveour model, we could develop techniques to check our solutions and continuously improve upon them where possible.This would improve the likelihood we will find the best possible seating arrangement, allowing us to potentially further improve on our already powerful result. For example, we have a provided preliminary calculations to show that our current results are optimal up to 10,000 simulations, however, this can extended with more computational power and further theoretical applications.\\
+To improve our model, we could develop techniques to check our solutions and continuously improve upon them where possible. This would improve the likelihood of finding the best possible seating arrangement, allowing us to potentially further improve on our already powerful result. For example, we have a provided preliminary calculations to show that our current results are optimal up to 10,000 simulations, however, this can extended with more computational power and further theoretical applications.\\
+
+
+\subsection*{Costings for further work}
+During this work, we established a new app which, currently, contains only the layout of one type of train. We developed methods to extract the seat location data from the available PDF file, and then ran our algorithm to determine a suitable seating plan. Further, we conducted a mathematical investigation of the problem to determine whether a true optimum is easily available, and then developed methods that could potentially improve on the first result found. In total, this work took approximately $2$ weeks to complete. An estimate of the number of hours and costing for this work is given in Table \ref{tab:costing_pertrain}. We estimate that repeating the analysis for further train models will require a similar number of hours. If we were to implement the model for all 9 train models given in the pdf file, we estimate a cost of £2700.
+
+
+\begin{table}[ht!]
+\begin{center}
+ \begin{tabularx}{\textwidth}{|X |l|l|}
+%\begin{tabular}{|c |c|c|}
+ \hline
+\textbf{Task} &\textbf{Estimated time (hours)} &\textbf{Cost at £30 per hour} \\
+ \hline
+Extract seating layout from PDF file & 2 & £60 \\
+\hline
+Implement optimisation algorithm  & 4 & £120 \\
+\hline
+App development and integrating the seating layout & 4 & £120 \\
+\hline
+\textbf{TOTAL}  & 10 & £300 \\
+\hline
+\end{tabularx}
+\end{center}
+\caption{Estimated costing per train model for optimising seating layouts.}
+\label{tab:costing_pertrain}
+\end{table}
+
+For further optimisation and extra measures to reduce risk, we will need to develop new algorithms. Estimates for the number of hours we expect for each of our suggested measures are given in Table \ref{tab:costing_extras}.
+
+
+\begin{table}[ht!]
+\begin{center}
+ \begin{tabularx}{\textwidth}{|X |l|l|}
+%\begin{tabular}{|c |c|c|}
+ \hline
+\textbf{Task} &\textbf{Estimated time (hours)} &\textbf{Cost at £30 per hour} \\
+ \hline
+Further optimisation of the seating algorithm to search for solutions with greater occupancy & 8 & £240 \\
+\hline
+Incorporate potential shield locations to further improve occupancy & 18 & £540 \\
+\hline
+Include the direction of seats, allowing for smaller social distancing between passengers facing away from one another & 18 & £540 \\
+\hline
+Reduce exposure on walkways by reducing the number of seats used at the edges of walkways  & 18 & £540 \\
+\hline
+\textbf{TOTAL}  & 62 & £1860 \\
+\hline
+\end{tabularx}
+\end{center}
+\caption{Estimated costing for possible future work to further improve occupancy rates.}
+\label{tab:costing_extras}
+\end{table}
+
 
 \end{document}
